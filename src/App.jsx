@@ -1,14 +1,17 @@
 import "./App.css";
-import Hero from "./components/Hero";
-import Sponsers from "./components/Sponsers";
-import Steps from "./components/Steps";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Search from "./pages/Search";
 
 function App() {
 	return (
 		<div className="App">
-			<Hero />
-			<Steps />
-			<Sponsers />
+			<Router>
+				<Switch>
+					<Route path="/" exact component={Landing} />
+					<Route path="/search" exact component={Search} />
+				</Switch>
+			</Router>
 		</div>
 	);
 }

@@ -12,8 +12,8 @@ const Hero = () => {
 					<span className="mr-5">Contact</span>
 					<span className="mr-5">Sign Up</span>
 
-					<button className="bg-red-400 text-white rounded-lg p-1 pl-2 pr-2">
-						Button
+					<button className="bg-red-400 text-white rounded-lg p-1 pl-2 pr-2 font-bold hover:bg-red-500">
+						Log In
 					</button>
 				</div>
 			</div>
@@ -28,8 +28,8 @@ const Hero = () => {
 						convallis neque. Integer augue neque, lacinia placerat lacus in,
 						scelerisque consequat massa.
 					</p>
-					<button className="bg-red-400 text-white rounded-lg p-2 text-xl w-44">
-						Click Me
+					<button className="bg-red-400 text-white rounded-lg p-2 pl-4 pr-4 text-xl font-bold hover:bg-red-500">
+						Take a Listen
 					</button>
 				</div>
 
