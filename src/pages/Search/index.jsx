@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Modal from "../../components/Modal";
 
 const Search = () => {
 	const [album, setAlbum] = useState();
 
 	const getAlbum = async () => {
 		let response = await axios
-			.get("http://localhost:8080/test")
+			.get("http://localhost:8081/test")
 			.catch((err) => console.log(err));
 		setAlbum(response.data);
 
@@ -40,6 +41,8 @@ const Search = () => {
 					</div>
 				</div>
 			)}
+
+			<Modal />
 		</div>
 	);
 };

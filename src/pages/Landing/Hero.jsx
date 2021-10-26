@@ -1,3 +1,5 @@
+import Modal from "../../components/Modal";
+
 const Hero = () => {
 	return (
 		<div className="m-auto p-5" style={{ width: "1366px", height: "766px" }}>
@@ -12,9 +14,7 @@ const Hero = () => {
 					<span className="mr-5">Contact</span>
 					<span className="mr-5">Sign Up</span>
 
-					<button className="bg-red-400 text-white rounded-lg p-1 pl-2 pr-2 font-bold hover:bg-red-500">
-						Log In
-					</button>
+					<Modal />
 				</div>
 			</div>
 
