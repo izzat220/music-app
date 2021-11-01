@@ -22,8 +22,8 @@ export default function Modal() {
 					>
 						<div className="relative w-auto">
 							<motion.div
-								initial={{ opacity: 0, scale: 0 }}
-								animate={{ opacity: 1, scale: 1 }}
+								initial={{ opacity: 0, y: -100 }}
+								animate={{ opacity: 1, y: 0 }}
 								className=" rounded-lg shadow-lg relative flex flex-row items-center w-100 bg-white p-24"
 								style={{ height: "600px" }}
 							>

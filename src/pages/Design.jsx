@@ -1,8 +1,10 @@
 import React from "react";
+import AlbumModal from "../components/AlbumModal";
 
 const Design = () => {
 	return (
 		<div className="p-10">
+			<AlbumModal />
 			<button className="bg-purple-700 text-white p-2 pr-3 pl-3 rounded-xl font-bold mr-2 hover:bg-purple-800 active:bg-purple-900">
 				Primary
 			</button>

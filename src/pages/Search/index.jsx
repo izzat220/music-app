@@ -108,9 +108,14 @@ const Search = () => {
 												<span className="text-gray-500 text-xs">Album (12 Tracks)</span>
 											</div>
 
-											<button className="bg-purple-700 text-white text-xs p-2 pr-3 pl-3 rounded-md font-bold mr-2 hover:bg-purple-800 active:bg-purple-900">
-												Add to List
-											</button>
+											<div className="flex flex-row w-full">
+												<button className="bg-purple-700 text-white text-sm p-2 w-full rounded-md font-bold mr-2 hover:bg-purple-800 active:bg-purple-900">
+													Add to List
+												</button>
+												<button className="bg-gray-100 text-sm p-2 rounded-md font-bold hover:bg-gray-200 active:bg-gray-300">
+													Details
+												</button>
+											</div>
 										</div>
 									</div>
 								);
