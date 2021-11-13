@@ -2,6 +2,7 @@ import React from "react";
 import AlbumModal from "../components/AlbumModal";
 
 const Design = () => {
+	console.log("Hello World");
 	return (
 		<div className="p-10">
 			<AlbumModal />

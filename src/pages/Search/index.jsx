@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Modal from "../../components/Modal";
+import AlbumModal from "../../components/AlbumModal";
 import Sidebar from "../../components/Sidebar";
 
 const Search = () => {
@@ -29,67 +29,31 @@ const Search = () => {
 				<Sidebar />
 
 				<div className="flex flex-col">
-					<div className="d-flex flex-row">
+					<div className="flex flex-row mb-5">
 						<input
-							className="border-2 rounded-md p-2 outline-none mb-5 text-xs mr-2 w-96"
-							placeholder="Search Albums..."
+							className="border-2 rounded-md p-2 outline-none text-sm mr-2 w-96 text-white"
+							style={{
+								backgroundColor: "rgb(30,30,30)",
+								borderColor: "rgb(30,30,30)",
+							}}
+							placeholder="Search albums, artist, or songs ..."
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
 						/>
-						<button
-							onClick={searchAlbums}
-							className="bg-purple-700 text-white text-xs p-2 rounded-md border-2 border-purple-700 font-bold mr-2 hover:bg-purple-800 active:bg-purple-900"
-						>
+						<button onClick={searchAlbums} className="primary">
 							Search Albums
 						</button>
 					</div>
 
-					<span className="text-purple-700 font-bold text-3xl">Artists</span>
-					<hr className="w-full mb-5 mt-1 border-1 border-opacity-30 border-purple-700" />
+					<span className="text-purple-400 font-bold text-3xl mb-5">Albums</span>
 
-					<div className="grid grid-cols-4 gap-5 mb-12">
-						{artists &&
-							artists.map((artist) => {
-								if (artist.images[1]) {
-									return (
-										<div className="flex flex-row rounded-xl shadow-md ">
-											{artist.images[1] && (
-												<img
-													src={artist.images[2]?.url}
-													alt=""
-													className="rounded-l-lg"
-													style={{ width: "100px", height: "100px" }}
-												/>
-											)}
-
-											<div className="flex flex-col p-2 w-full justify-between">
-												<div className="flex flex-col">
-													<span className="text-purple-700 font-bold text-sm">
-														{artist.name}
-													</span>
-													<span className="text-gray-500 text-xs">Artist</span>
-												</div>
-
-												<button className="bg-purple-700 text-white text-xs rounded-md font-bold w-full hover:bg-purple-800 active:bg-purple-900 p-1">
-													Follow
-												</button>
-											</div>
-										</div>
-									);
-								}
-							})}
-					</div>
-
-					<span className="text-purple-700 font-bold text-3xl">Albums</span>
-					<hr className="w-full mb-5 mt-1 border-1 border-opacity-30 border-purple-700" />
-
-					<div className="grid grid-cols-4 gap-5">
+					<div className="grid grid-cols-4 gap-5 w-full">
 						{albums &&
 							albums.map((album) => {
 								return (
 									<div
-										className="flex flex-col rounded-xl shadow-md"
-										style={{ width: "250px" }}
+										className="flex flex-col rounded-xl"
+										style={{ width: "250px", backgroundColor: "rgb(30,30,30)" }}
 									>
 										<img
 											src={album.images[1]?.url}
@@ -101,20 +65,16 @@ const Search = () => {
 
 										<div className="flex flex-col w-full p-3">
 											<div className="flex flex-col mb-3">
-												<span class="font-bold text-sm text-purple-700">
+												<span class="font-bold text-sm text-purple-400">
 													{album.artists[0].name}
 												</span>
-												<span className="font-bold">{album.name}</span>
-												<span className="text-gray-500 text-xs">Album (12 Tracks)</span>
+												<span className="font-bold text-gray-300">{album.name}</span>
+												<span className="text-gray-400 text-xs">Album (12 Tracks)</span>
 											</div>
 
 											<div className="flex flex-row w-full">
-												<button className="bg-purple-700 text-white text-sm p-2 w-full rounded-md font-bold mr-2 hover:bg-purple-800 active:bg-purple-900">
-													Add to List
-												</button>
-												<button className="bg-gray-100 text-sm p-2 rounded-md font-bold hover:bg-gray-200 active:bg-gray-300">
-													Details
-												</button>
+												<button className="primary w-full mr-2">Add to List</button>
+												<AlbumModal />
 											</div>
 										</div>
 									</div>
