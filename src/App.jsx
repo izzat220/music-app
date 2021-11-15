@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
 
 import "./styles/button.css";
+import "./styles/input.css";
 
 function App() {
 	return (

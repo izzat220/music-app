@@ -1,4 +1,8 @@
+import LoginModal from "./LoginModal/index";
+import { useState } from "react";
+
 const Navbar = () => {
+	const [showModal, setShowModal] = useState(false);
 	return (
 		<div
 			className="shadow-xl w-full pl-8 pr-6 pt-5 pb-5 flex flex-row items-center justify-between"
@@ -10,7 +14,12 @@ const Navbar = () => {
 				<span className="text-gray-300 font-bold mr-4">About</span>
 				<span className="text-gray-300 font-bold mr-4">Developer</span>
 				<button class="secondary mr-2">Signup</button>
-				<button class="primary">Login</button>
+
+				<button onClick={() => setShowModal(true)} className="primary">
+					Login
+				</button>
+
+				<LoginModal showModal={showModal} setShowModal={setShowModal} />
 			</div>
 		</div>
 	);

@@ -37,11 +37,11 @@ function AlbumModal() {
 								<motion.div
 									initial={{ opacity: 0, y: 200 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ ease: "anticipate", duration: 0.2, delay: 0.2 }}
+									transition={{ ease: "anticipate", duration: 0.5, delay: 0.2 }}
 									exit={{
 										opacity: 0,
 										y: 100,
-										transition: { ease: "anticipate", duration: 0.3 },
+										transition: { ease: "anticipate", duration: 0.5 },
 									}}
 									className="rounded-lg shadow-lg relative flex flex-row items-center w-100 p-10"
 									style={{
