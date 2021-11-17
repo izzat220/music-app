@@ -1,7 +1,7 @@
 import LoginModal from "./LoginModal/index";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ loggedUser }) => {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<div
@@ -13,13 +13,22 @@ const Navbar = () => {
 				<span className="text-gray-300 font-bold mr-4">Home</span>
 				<span className="text-gray-300 font-bold mr-4">About</span>
 				<span className="text-gray-300 font-bold mr-4">Developer</span>
-				<button class="secondary mr-2">Signup</button>
+				{!loggedUser.username && (
+					<>
+						<button class="secondary mr-2">Signup</button>
+						<button onClick={() => setShowModal(true)} className="primary">
+							Login
+						</button>
 
-				<button onClick={() => setShowModal(true)} className="primary">
-					Login
-				</button>
+						<LoginModal showModal={showModal} setShowModal={setShowModal} />
+					</>
+				)}
 
-				<LoginModal showModal={showModal} setShowModal={setShowModal} />
+				{loggedUser.username && (
+					<button onClick={() => setShowModal(true)} className="primary">
+						Logout
+					</button>
+				)}
 			</div>
 		</div>
 	);

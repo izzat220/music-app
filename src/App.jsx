@@ -8,19 +8,53 @@ import Profile from "./pages/Profile";
 
 import "./styles/button.css";
 import "./styles/input.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+	const [loggedUser, setLoggedUser] = useState({});
+	const [checkedLogged, setCheckedLogged] = useState(false);
+
+	const checkToken = async () => {
+		await axios
+			.get("http://localhost:8081/users/checkToken", {
+				withCredentials: true,
+			})
+			.then((response) => {
+				console.log(response.data);
+				setLoggedUser({
+					username: response.data.username,
+					displayName: response.data.displayName,
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.then(() => {
+				setCheckedLogged(true);
+			});
+	};
+
+	useEffect(() => {
+		checkToken();
+	}, []);
+
 	return (
 		<div className="App">
-			<Navbar />
-			<Router>
-				<Switch>
-					<Route path="/" exact component={Landing} />
-					<Route path="/search" exact component={Search} />
-					<Route path="/design" exact component={Design} />
-					<Route path="/profile" exact component={Profile} />
-				</Switch>
-			</Router>
+			{!checkedLogged && <span className="text-xl text-white">Loading</span>}
+			{checkedLogged && (
+				<>
+					<Navbar loggedUser={loggedUser} />
+					<Router>
+						<Switch>
+							<Route path="/" exact component={Landing} />
+							<Route path="/search" exact component={Search} />
+							<Route path="/design" exact component={Design} />
+							<Route path="/profile" exact component={Profile} />
+						</Switch>
+					</Router>
+				</>
+			)}
 		</div>
 	);
 }

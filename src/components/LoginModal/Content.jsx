@@ -1,9 +1,27 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import onClickOutside from "react-onclickoutside";
+import axios from "axios";
 
 function Content({ setShowModal }) {
 	Content.handleClickOutside = () => setShowModal(false);
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const login = async () => {
+		let response = await axios
+			.post(
+				"http://localhost:8081/users/login",
+				{
+					email,
+					password,
+				},
+				{ withCredentials: true }
+			)
+			.catch((err) => console.log(err));
+		console.log(response.data);
+	};
 
 	return (
 		<motion.div
@@ -25,14 +43,20 @@ function Content({ setShowModal }) {
 				<div className="flex flex-col w-full items-center mb-12">
 					<i className="fas fa-lock text-purple-400 text-6xl" />
 				</div>
-				<span className="text-gray-400 text-sm font-bold mb-2">Username</span>
-				<input className="mb-4 p-3" />
+				<span className="text-gray-400 text-sm font-bold mb-2">Email</span>
+				<input className="mb-4 p-3" onChange={(e) => setEmail(e.target.value)} />
 
 				<span className="text-gray-400 text-sm font-bold mb-2">Password</span>
-				<input className="p-3 mb-1" type="password" />
+				<input
+					className="p-3 mb-1"
+					type="password"
+					onChange={(e) => setPassword(e.target.value)}
+				/>
 				<span className="mb-7 text-purple-400 text-sm">Forgot your password?</span>
 
-				<button className="primary p-3">Log In</button>
+				<button className="primary p-3" onClick={login}>
+					Log In
+				</button>
 			</div>
 		</motion.div>
 	);
