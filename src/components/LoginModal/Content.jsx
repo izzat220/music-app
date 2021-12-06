@@ -35,24 +35,26 @@ function Content({ setShowModal }) {
 			}}
 			className="rounded-lg shadow-lg relative flex flex-row items-center w-100 p-10"
 			style={{
-				backgroundColor: "rgb(46,46,46)",
+				backgroundColor: "rgb(30,30,30)",
 				width: "400px",
 			}}
 		>
 			<div className="flex flex-col w-full">
-				<div className="flex flex-col w-full items-center mb-12">
+				<div className="flex flex-col w-full items-center mb-8">
 					<i className="fas fa-lock text-purple-400 text-6xl" />
 				</div>
-				<span className="text-gray-400 text-sm font-bold mb-2">Email</span>
+				<span className="text-gray-400 text-sm font-bold mb-1">Email</span>
 				<input className="mb-4 p-3" onChange={(e) => setEmail(e.target.value)} />
 
-				<span className="text-gray-400 text-sm font-bold mb-2">Password</span>
+				<span className="text-gray-400 text-sm font-bold mb-1">Password</span>
 				<input
 					className="p-3 mb-1"
 					type="password"
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<span className="mb-7 text-purple-400 text-sm">Forgot your password?</span>
+				<span className="mb-7 mt-3 text-purple-400 text-sm">
+					Forgot your password?
+				</span>
 
 				<button className="primary p-3" onClick={login}>
 					Log In

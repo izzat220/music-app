@@ -1,6 +1,19 @@
+import { useState } from "react";
+import CreatePostModal from "./CreatePostModal";
+
 const Sidebar = () => {
+	const [showCreatePostModal, setShowCreatePostModal] = useState(false);
+
 	return (
 		<div className="flex flex-col mr-10" style={{ width: "200px" }}>
+			{/* <button
+				className="primary mb-24"
+				onClick={() => setShowCreatePostModal(true)}
+			>
+				<i className="fas fa-pen mr-2" />
+				Create Post
+			</button> */}
+
 			<span
 				className="rounded-xl p-3 font-bold text-purple-400 mb-2 cursor-pointer"
 				style={{ backgroundColor: "rgb(46,46,46)" }}
@@ -20,6 +33,11 @@ const Sidebar = () => {
 				<i className="fas fa-bell mr-3" />
 				Notifications
 			</span>
+
+			<CreatePostModal
+				showModal={showCreatePostModal}
+				setShowModal={setShowCreatePostModal}
+			/>
 		</div>
 	);
 };

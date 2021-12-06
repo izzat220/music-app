@@ -5,6 +5,7 @@ import Search from "./pages/Search";
 import Design from "./pages/Design";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
+import Feed from "./pages/Feed";
 
 import "./styles/button.css";
 import "./styles/input.css";
@@ -49,8 +50,11 @@ function App() {
 						<Switch>
 							<Route path="/" exact component={Landing} />
 							<Route path="/search" exact component={Search} />
+							<Route path="/feed" exact component={Feed} />
 							<Route path="/design" exact component={Design} />
-							<Route path="/profile" exact component={Profile} />
+							<Route path="/profile" exact>
+								<Profile user={loggedUser} />
+							</Route>
 						</Switch>
 					</Router>
 				</>

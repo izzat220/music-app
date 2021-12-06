@@ -4,10 +4,7 @@ import { useState } from "react";
 const Navbar = ({ loggedUser }) => {
 	const [showModal, setShowModal] = useState(false);
 	return (
-		<div
-			className="shadow-xl w-full pl-8 pr-6 pt-5 pb-5 flex flex-row items-center justify-between"
-			style={{ backgroundColor: "rgb(30,30,30)" }}
-		>
+		<div className="shadow-xl w-full pl-8 pr-6 pt-5 pb-5 flex flex-row items-center justify-between">
 			<span className="text-purple-400 font-bold">Music App</span>
 			<div className="flex flex-row items-center justify-between">
 				<span className="text-gray-300 font-bold mr-4">Home</span>

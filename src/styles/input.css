@@ -1,17 +1,20 @@
-input {
-	background-color: rgb(30, 30, 30);
-	border: 2px solid rgb(30, 30, 30);
+input,
+textarea {
+	background-color: rgb(18, 18, 18);
+	border: 2px solid rgb(18, 18, 18);
 	color: rgba(229, 231, 235);
 	border-radius: 6px;
 	padding: 6px;
-	font-weight: 600;
+
 	transition-duration: 0.2s;
 	outline: none;
 }
 
-input:hover {
+input:hover,
+textarea:hover {
 	border-color: rgba(167, 139, 250, 0.301);
 }
-input:focus {
+input:focus,
+textarea:focus {
 	border-color: rgba(167, 139, 250);
 }
