@@ -4,15 +4,22 @@ import { useState } from "react";
 const Navbar = ({ loggedUser }) => {
 	const [showModal, setShowModal] = useState(false);
 	return (
-		<div className="shadow-xl w-full pl-8 pr-6 pt-5 pb-5 flex flex-row items-center justify-between">
-			<span className="text-purple-400 font-bold">Music App</span>
+		<div
+			className="w-full p-8 flex flex-row items-center justify-between m-auto"
+			style={{ maxWidth: "1366px" }}
+		>
+			<span className="font-bold" style={{ color: "hsl(317, 100%, 54%)" }}>
+				Music App
+			</span>
 			<div className="flex flex-row items-center justify-between">
 				<span className="text-gray-300 font-bold mr-4">Home</span>
 				<span className="text-gray-300 font-bold mr-4">About</span>
-				<span className="text-gray-300 font-bold mr-4">Developer</span>
+				<span className="text-gray-300 font-bold">Developer</span>
 				{!loggedUser.username && (
 					<>
 						<button class="secondary mr-2">Signup</button>
+
+						<span style={{ color: "hsl(317, 100%, 54%)" }}>Login</span>
 						<button onClick={() => setShowModal(true)} className="primary">
 							Login
 						</button>
@@ -22,9 +29,15 @@ const Navbar = ({ loggedUser }) => {
 				)}
 
 				{loggedUser.username && (
-					<button onClick={() => setShowModal(true)} className="primary">
-						Logout
-					</button>
+					<>
+						<span
+							onClick={() => setShowModal(true)}
+							className="font-bold"
+							style={{ color: "hsl(317, 100%, 54%)" }}
+						>
+							Logout
+						</span>
+					</>
 				)}
 			</div>
 		</div>

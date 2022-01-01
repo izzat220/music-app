@@ -11,6 +11,7 @@ import "./styles/button.css";
 import "./styles/input.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Sidebar from "./components/Sidebar";
 
 function App() {
 	const [loggedUser, setLoggedUser] = useState({});
@@ -46,17 +47,28 @@ function App() {
 			{checkedLogged && (
 				<>
 					<Navbar loggedUser={loggedUser} />
-					<Router>
-						<Switch>
-							<Route path="/" exact component={Landing} />
-							<Route path="/search" exact component={Search} />
-							<Route path="/feed" exact component={Feed} />
-							<Route path="/design" exact component={Design} />
-							<Route path="/profile" exact>
-								<Profile user={loggedUser} />
-							</Route>
-						</Switch>
-					</Router>
+
+					<div class="grid grid-cols-12 gap-10 p-8 items-start">
+						<Sidebar />
+
+						<div class="col-span-9 pr-5">
+							<Router>
+								<Switch>
+									<Route path="/" exact>
+										<Landing user={loggedUser} />
+									</Route>
+									<Route path="/search" exact>
+										<Search user={loggedUser} />
+									</Route>
+									<Route path="/feed" exact component={Feed} />
+									<Route path="/design" exact component={Design} />
+									<Route path="/profile" exact>
+										<Profile user={loggedUser} />
+									</Route>
+								</Switch>
+							</Router>
+						</div>
+					</div>
 				</>
 			)}
 		</div>

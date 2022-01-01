@@ -44,15 +44,28 @@ function Content({ setShowModal }) {
 					<i className="fas fa-lock text-purple-400 text-6xl" />
 				</div>
 				<span className="text-gray-400 text-sm font-bold mb-1">Email</span>
-				<input className="mb-4 p-3" onChange={(e) => setEmail(e.target.value)} />
+				<input
+					className="rounded-lg p-2 text-gray-200 border-2 outline-none focus:border-gray-600 mb-4"
+					style={{
+						backgroundColor: "rgb(44,44,44)",
+						borderColor: "rgb(44,44,44)",
+						minWidth: "300px",
+					}}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
 
 				<span className="text-gray-400 text-sm font-bold mb-1">Password</span>
 				<input
-					className="p-3 mb-1"
+					className="rounded-lg p-2 text-gray-200 border-2 outline-none focus:border-gray-600 mb-1"
+					style={{
+						backgroundColor: "rgb(44,44,44)",
+						borderColor: "rgb(44,44,44)",
+						minWidth: "300px",
+					}}
 					type="password"
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<span className="mb-7 mt-3 text-purple-400 text-sm">
+				<span className="mb-7 mt-3 text-gray-400 text-sm">
 					Forgot your password?
 				</span>
 

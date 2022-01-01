@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import CommentsModal from "./CommentsModal";
 import moment from "moment";
+import { motion } from "framer-motion";
 
-const Post = ({ post }) => {
+const Post = ({ post, index }) => {
 	const [showComments, setShowComments] = useState(false);
 
 	return (
-		<div
+		<motion.div
 			className="flex flex-col w-full p-5 text-gray-300 rounded-xl mb-8"
 			style={{
 				backgroundColor: "rgb(30,30,30)",
 			}}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ delay: 0.1 * index }}
 		>
 			<div className="flex flex-row items-center justify-between mb-5">
 				<div className="flex flex-row items-center">
@@ -25,21 +29,19 @@ const Post = ({ post }) => {
 				</div>
 
 				<div className="flex flex-row items-center rounded-xl">
-					<div className="rounded-xl p-2 mr-2 text-xs bg-purple-400 text-black font-bold cursor-pointer">
-						<i className="fas fa-heart mr-2" />
-						<span className="mr-4">Likes</span>
-						<span>{post.likes}</span>
-					</div>
+					<i className="fas fa-heart mr-2" style={{ color: "rgb(200,20,255)" }} />
+					{/* <span className="mr-4">Likes</span> */}
+					{/* <span>{post.likes}</span> */}
 
-					<div
+					{/* <div
 						className="rounded-xl p-2 text-xs font-bold"
 						style={{ backgroundColor: "rgb(46,46,46)" }}
 						onClick={() => setShowComments(true)}
-					>
-						<i className="fas fa-comment mr-2" />
-						<span className="mr-4">Comments</span>
-						<span>22</span>
-					</div>
+					> */}
+					<i className="fas fa-comment mr-2" />
+					{/* <span className="mr-4">Comments</span>
+						<span>22</span> */}
+					{/* </div> */}
 				</div>
 			</div>
 
@@ -65,25 +67,25 @@ const Post = ({ post }) => {
 						<span className="text-xs text-gray-500">Listening to</span>
 						<span className="font-bold">The Last Baron</span>
 						<span className="text-xs text-gray-500">
-							by <span className="font-bold text-purple-400 text-xs">Mastodon</span>
+							{/* by <span className="font-bold text-purple-400 text-xs">Mastodon</span> */}
 						</span>
 					</div>
 				</div>
 
 				<div className="flex flex-col">
 					<span className="text-xs text-gray-500">{post.displayName} gave it</span>
-					<span>
+					{/* <span>
 						<i className="fas fa-star mr-1 text-purple-400" />
 						<i className="fas fa-star mr-1 text-purple-400" />
 						<i className="fas fa-star mr-1 text-purple-400" />
 						<i className="fas fa-star mr-1 text-gray-500" />
 						<i className="fas fa-star text-gray-500" />
-					</span>
+					</span> */}
 				</div>
 			</div>
 
 			<CommentsModal showModal={showComments} setShowModal={setShowComments} />
-		</div>
+		</motion.div>
 	);
 };
 

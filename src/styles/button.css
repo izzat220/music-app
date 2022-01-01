@@ -12,8 +12,8 @@ button {
 }
 
 .primary {
-	background-color: rgba(167, 139, 250);
-	border-color: rgba(167, 139, 250);
+	background-color: hsl(286, 100%, 54%);
+	border-color: hsl(286, 100%, 54%);
 	color: black;
 }
 .primary:hover:enabled {

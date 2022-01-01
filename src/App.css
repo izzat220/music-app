@@ -1,9 +1,8 @@
 .App {
 	position: relative;
 	width: 100%;
+	max-width: 1366px;
 	margin: auto;
-	display: flex;
-	flex-direction: column;
 	font-family: "Noto Sans", sans-serif;
-	background-color: rgb(18, 18, 18);
+	background-color: rgb(23, 23, 23);
 }

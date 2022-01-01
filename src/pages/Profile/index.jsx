@@ -1,9 +1,9 @@
 import axios from "axios";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import Post from "../../components/Post";
 import Sidebar from "../../components/Sidebar";
 import Toast from "../../components/Toast";
+import Loading from "../../components/Loading";
 
 function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
@@ -11,13 +11,11 @@ function sleep(ms) {
 
 const Profile = ({ user }) => {
 	const [showSuccess, setShowSuccess] = useState(false);
-
 	const [userInfo, setUserInfo] = useState();
-
 	const [displayName, setDisplayName] = useState();
 	const [email, setEmail] = useState();
-
 	const [editField, setEditField] = useState(null);
+	const [albums, setAlbums] = useState();
 
 	const getUserInfo = async () => {
 		let response = await axios
@@ -30,6 +28,31 @@ const Profile = ({ user }) => {
 		setUserInfo(response.data);
 		setDisplayName(response.data.displayName);
 		setEmail(response.data.email);
+
+		await getUserAlbums();
+	};
+
+	const getUserAlbums = async () => {
+		let response = await axios
+			.get("http://localhost:8081/albums/getUserAlbumsWithDetails", {
+				withCredentials: true,
+			})
+			.catch((err) => console.log(err));
+		setAlbums(response.data);
+	};
+
+	const removeAlbum = async (albumId, index) => {
+		let response = await axios
+			.post(
+				"http://localhost:8081/albums/unlikeAlbum",
+				{ albumId },
+				{ withCredentials: true }
+			)
+			.catch((err) => console.log(err));
+
+		let array = albums.map((item) => item);
+		array.splice(index, 1);
+		setAlbums(array);
 	};
 
 	const updateProfile = async () => {
@@ -61,21 +84,21 @@ const Profile = ({ user }) => {
 
 	return (
 		<div className="m-auto p-10" style={{ width: "1366px", height: "766px" }}>
-			<div className="flex flex-row w-full">
+			<div className="flex flex-row w-full ">
 				<Sidebar />
 
 				{!userInfo && <span>Loading</span>}
 
-				{userInfo && (
+				{userInfo ? (
 					<>
 						<div
-							className="flex flex-col m-auto w-full"
+							className="flex flex-col m-auto w-full mb-20"
 							style={{ maxWidth: "600px" }}
 						>
 							<div
-								className="flex flex-col  w-full p-5 text-gray-200 rounded-xl"
+								className="flex flex-col  w-full p-5 text-gray-200 rounded-xl mb-8"
 								style={{
-									backgroundColor: "rgb(30,30,30)",
+									backgroundColor: "rgb(33,33,33)",
 									borderColor: "rgb(30,30,30)",
 								}}
 							>
@@ -203,8 +226,72 @@ const Profile = ({ user }) => {
 									</button>
 								</div>
 							</div>
+
+							<div
+								className="flex flex-col w-full p-5 text-gray-200 rounded-xl"
+								style={{
+									backgroundColor: "rgb(30,30,30)",
+									borderColor: "rgb(30,30,30)",
+								}}
+							>
+								<div className="flex flex-row w-full items-center justify-between mb-8">
+									<span className="text-purple-400 font-bold text-2xl">
+										Liked Albums
+									</span>
+
+									{/* {albums && <input placeholder="Search Albums" />} */}
+								</div>
+
+								<div
+									className="flex flex-col pr-8"
+									style={{ maxHeight: "400px", overflowY: "scroll" }}
+								>
+									{!albums ? (
+										<div className="flex flex-row w-full items-center justify-center p-5">
+											<span>Loading Albums</span>
+										</div>
+									) : (
+										albums.map((album, i) => {
+											return (
+												<motion.div
+													className="flex flex-row w-full items-center justify-between mb-3"
+													initial={{ opacity: 0 }}
+													animate={{ opacity: 1 }}
+													transition={{ delay: 0.1 * i }}
+												>
+													<div className="flex flex-row items-center">
+														<img
+															className="rounded-lg mr-5"
+															src={album.images[2].url}
+															alt=""
+														/>
+														<div className="flex flex-col">
+															<span className="font-bold text-gray-200">{album.name}</span>
+															<span className="text-sm">
+																by{" "}
+																<span className="text-purple-400 font-bold">
+																	{album.artists[0].name}
+																</span>
+															</span>
+														</div>
+													</div>
+
+													<button
+														className="secondary"
+														onClick={() => removeAlbum(album.id, i)}
+													>
+														Remove
+													</button>
+												</motion.div>
+											);
+										})
+									)}
+								</div>
+							</div>
 						</div>
 					</>
+				) : (
+					<Loading />
 				)}
 			</div>
 
